@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Game List of Elexops you can find{% end %}
+
+{% block body %}
+{% for game in games %}
+{{game._id}}
+{% end %}
+{% end %}

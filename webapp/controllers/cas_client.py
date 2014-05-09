@@ -56,7 +56,7 @@ class CasClientMixin(object):
         try:
             user = None
             response = page.read()
-            logger.debug(response)
+            #logger.debug(response)
             tree = ElementTree.fromstring(response)
             if tree[0].tag.endswith('authenticationSuccess'):
                 for element in tree[0]:
@@ -75,7 +75,7 @@ class LoginHandler(CasClientMixin, BaseHandler):
             username = self.verify_cas(ticket, self.service_url)
             if username:
                 self.set_secure_cookie('cas_user', username)
-                logger.debug(self.get_next_url())
+                #logger.debug(self.get_next_url())
                 return self.redirect(self.get_next_url())
         return self.redirect(self.get_login_url())
 

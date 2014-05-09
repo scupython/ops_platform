@@ -47,6 +47,9 @@ class BaseHandler(tornado.web.RequestHandler):
         logger.debug("Found '%s': %s in JSON arguments" % (name, arg))
         return arg
 
+    def get_login_url(self):
+        return u"/login"
+
     def get_current_user(self):
         """"""
         username = self.get_secure_cookie('cas_user')

@@ -8,6 +8,8 @@ from motorengine import EmbeddedDocumentField, ReferenceField, EmailField
 from motorengine.fields.base_field import BaseField
 from ipaddress import IPv4Address
 
+__slots__ = ["User", "Game", "App", "Host"]
+
 class IPAddrField(BaseField):
     def validate(self, value):
         try:

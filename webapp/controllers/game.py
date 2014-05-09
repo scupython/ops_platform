@@ -3,24 +3,17 @@
 
 from .base import BaseHandler
 from tornado import gen
-from models import Game, App
+from models.modelfunc import get_game_of_user
 import logging
 logger = logging.getLogger('elexops.' + __name__)
 
-class GameInsertHandler(BaseHandler):
-    @gen.coroutine
+class GameIndexHandler(BaseHandler):
+
     def get(self):
-        game = yield Game.objects.create(
-            name="testgame",
-            cname="zhName",
-            gametype='elex',
-            active=1,
-        )
-        app = yield App.objects.create(
-            name='testapp',
-            cname='testapp_zh',
-            game=game,
-            active=1
-        )
-        self.write(str(app._id))
-        self.finish()
+        u = self.current_user
+        games = get_game_of_user(u)
+        self.render("game.html", games=games)
+
+        
+class GameInsertHandler(BaseHandler):
+    pass
